@@ -10,5 +10,5 @@ export const formSchema = z.object({
   cardThreeDesc: z.string().min(1, 'Enter card three desc'),
   image: z.any().refine((val) => val?.length > 0, 'Select Image'),
   video: z.any().refine((val) => val?.length > 0, 'Select Video'),
-  file: z.any().refine((val) => val?.length > 0, 'Select File'),
+  gigFile: z.any().refine((val) => val?.length > 0, 'Select File'),
 });

@@ -4,11 +4,12 @@ export type FormState = {
     cardOneTitle?: string[];
     cardOneDesc?: string[];
     cardTwoTitle?: string[];
+    cardTwoDesc?: string[];
     cardThreeTitle?: string[];
     cardThreeDesc?: string[];
     image?: string[];
     video?: string[];
-    file?: string[];
+    gigFile?: string[];
     _form?: string[];
   };
 };
