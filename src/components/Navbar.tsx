@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Logo from '../../public/logo.svg';
+import Link from 'next/link';
 
 function Navbar() {
   return (
@@ -17,7 +18,7 @@ function Navbar() {
             <p>Services</p>
             <p>Portfolio</p>
             <p>Team</p>
-            <p>Contact</p>
+            <Link href="/admin">Admin</Link>
           </div>
         </nav>
         <div className="flex-[0.5] border-b-2 border-slate-400" />

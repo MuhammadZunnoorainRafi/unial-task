@@ -1,5 +1,4 @@
 import Card from './Card';
-import CardTwo from './CardTwo';
 
 function LeftScreen() {
   return (
@@ -13,8 +12,6 @@ function LeftScreen() {
       </button>
       <div className="flex items-end justify-center gap-1 pt-6">
         <Card />
-        <Card />
-        <CardTwo />
       </div>
     </div>
   );

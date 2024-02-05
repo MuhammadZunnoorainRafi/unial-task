@@ -1,4 +1,5 @@
-import LeftScreen from './_components/LeftScreen';
+import ImageCarousel from '@/components/ImageCrousel';
+import LeftScreen from '@/components/LeftScreen';
 
 export default function Home() {
   return (
@@ -6,7 +7,9 @@ export default function Home() {
       <div className="flex-1 mt-3 border-l-2 border-slate-400 pt-[100px] ">
         <LeftScreen />
       </div>
-      <div className="flex-1 pt-2 bg-black ">right side</div>
+      <div className="flex-1  text-black ">
+        <ImageCarousel />
+      </div>
     </div>
   );
 }

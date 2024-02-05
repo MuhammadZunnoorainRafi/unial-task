@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import cardOne from '../../../public/cardOne.svg';
-import arrowOne from '../../../public/arrowOne.svg';
+import cardOne from '../../public/cardOne.svg';
+import arrowOne from '../../public/arrowOne.svg';
 
 function CardTwo() {
   const [cardState, setCardState] = useState(false);
