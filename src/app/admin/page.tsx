@@ -1,12 +1,17 @@
 'use client';
 
 import { createForm } from '@/actions/formAction';
+import { TCloudinary } from '@/utils/types';
+import { CldUploadWidget } from 'next-cloudinary';
+import { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 
 function Admin() {
   const [state, action] = useFormState(createForm, { errors: {} });
   const { pending } = useFormStatus();
-
+  const [imageData, setImageData] = useState('');
+  const [videoData, setVideoData] = useState('');
+  const [gigFileData, setGigFileData] = useState('');
   return (
     <div className="flex items-center justify-center mt-10 w-[500px] mx-auto">
       <div className="p-3 rounded-lg shadow-lg border flex-1 border-slate-200">
@@ -61,33 +66,79 @@ function Admin() {
             placeholder="Card three description"
           />
           <p className="text-red-500 text-sm">{state.errors?.cardThreeDesc}</p>
-          <div className="label">
-            <span className="label-text font-semibold">Choose image</span>
+          <div>
+            <CldUploadWidget
+              options={{ multiple: false, maxFiles: 1 }}
+              uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+              onUpload={(result, _) => {
+                if (result.event !== 'success') return;
+                const info = result.info as TCloudinary;
+                setImageData(info.public_id);
+              }}
+            >
+              {({ open }) => (
+                <button className="btn" onClick={() => open()}>
+                  Choose Image
+                </button>
+              )}
+            </CldUploadWidget>
             <input
-              type="file"
+              type="text"
+              className="input input-bordered "
               name="image"
-              className="file-input file-input-bordered "
+              value={imageData}
             />
+            <p className=" text-red-500 text-sm">{state.errors?.image}</p>
           </div>
-          <p className="text-red-500 text-sm">{state.errors?.image}</p>
-          <div className="label">
-            <span className="label-text font-semibold">Choose Video</span>
+          <div>
+            <CldUploadWidget
+              options={{ multiple: false, maxFiles: 1 }}
+              uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+              onUpload={(result, _) => {
+                if (result.event !== 'success') return;
+                const info = result.info as TCloudinary;
+                setVideoData(info.public_id);
+              }}
+            >
+              {({ open }) => (
+                <button className="btn" onClick={() => open()}>
+                  Choose Video
+                </button>
+              )}
+            </CldUploadWidget>
             <input
-              type="file"
+              type="text"
+              className="input input-bordered"
               name="video"
-              className="file-input file-input-bordered "
+              value={videoData}
             />
+            <p className="text-red-500 text-sm">{state.errors?.video}</p>
           </div>
-          <p className="text-red-500 text-sm">{state.errors?.video}</p>
-          <div className="label">
-            <span className="label-text font-semibold">Choose Gig</span>
+          <div>
+            <CldUploadWidget
+              options={{ multiple: false, maxFiles: 1 }}
+              uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+              onUpload={(result, _) => {
+                if (result.event !== 'success') return;
+                const info = result.info as TCloudinary;
+                setGigFileData(info.public_id);
+              }}
+            >
+              {({ open }) => (
+                <button className="btn" onClick={() => open()}>
+                  Choose gigFile
+                </button>
+              )}
+            </CldUploadWidget>
             <input
-              type="file"
-              name="file"
-              className="file-input file-input-bordered "
+              type="text"
+              name="gigFile"
+              className="input input-bordered"
+              value={gigFileData}
             />
+            <p className="text-red-500 text-sm">{state.errors?.gigFile}</p>
           </div>
-          <p className="text-red-500 text-sm">{state.errors?.gigFile}</p>
+
           <button
             disabled={pending}
             type="submit"

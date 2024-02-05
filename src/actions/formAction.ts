@@ -62,6 +62,7 @@ export async function createForm(
   }
 
   revalidatePath('/');
+  revalidatePath('/admin');
   return {
     errors: {},
   };

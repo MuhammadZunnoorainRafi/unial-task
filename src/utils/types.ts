@@ -13,3 +13,7 @@ export type FormState = {
     _form?: string[];
   };
 };
+
+export type TCloudinary = {
+  public_id: string;
+};

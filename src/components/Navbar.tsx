@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Logo from '../../public/logo.svg';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 function Navbar() {
   return (
@@ -17,8 +18,13 @@ function Navbar() {
             <p>About</p>
             <p>Services</p>
             <p>Portfolio</p>
-            <p>Team</p>
-            <Link href="/admin">Admin</Link>
+
+            <Link href="/" className="btn btn-xs btn-secondary">
+              Client
+            </Link>
+            <Link href="/admin" className="btn btn-xs btn-primary ">
+              Admin
+            </Link>
           </div>
         </nav>
         <div className="flex-[0.5] border-b-2 border-slate-400" />

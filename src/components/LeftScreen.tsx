@@ -1,6 +1,5 @@
 import Card from './Card';
-
-function LeftScreen() {
+async function LeftScreen() {
   return (
     <div className="max-w-xl mx-auto space-y-3">
       <h6 className="text-slate-500 font-bold">Hello World!</h6>
