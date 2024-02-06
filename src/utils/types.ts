@@ -44,6 +44,14 @@ export type TData = {
   gigFile: string;
 };
 
+export type TOrganized = {
+  id: number;
+  title: string;
+  desc: string;
+  image: string;
+  arrow: string;
+}[];
+
 export type TCloudinary = {
   public_id: string;
 };

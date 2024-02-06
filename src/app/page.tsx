@@ -29,12 +29,12 @@ export default async function Home() {
   };
 
   return (
-    <div className="flex h-[91.5vh]">
-      <div className="flex-1 mt-3 border-l-2 border-slate-400 pt-[100px] ">
-        <LeftScreen data={leftScreenData} />
-      </div>
+    <div className="flex flex-col md:flex-row-reverse h-[91.5vh]">
       <div className="flex-1  text-black ">
         <ImageCarousel data={imageCarouselData} />
+      </div>
+      <div className="flex-1 p-2 mt-3 border-l-2 border-slate-400 pt-[100px] ">
+        <LeftScreen data={leftScreenData} />
       </div>
     </div>
   );

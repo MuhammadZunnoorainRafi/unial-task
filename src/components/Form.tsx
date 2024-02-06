@@ -2,10 +2,10 @@
 import { createForm } from '@/actions/createFormAction';
 import { updateForm } from '@/actions/updateFormAction';
 import { TCloudinary, TData } from '@/utils/types';
-import { CldUploadWidget } from 'next-cloudinary';
+import { Viewer, Worker } from '@react-pdf-viewer/core';
+import { CldImage, CldUploadWidget } from 'next-cloudinary';
 import { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
-
 function Form({ data }: { data?: TData }) {
   const [imageData, setImageData] = useState('');
   const [videoData, setVideoData] = useState('');
@@ -102,7 +102,7 @@ function Form({ data }: { data?: TData }) {
             uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
             onUpload={(result, _) => {
               if (result.event !== 'success') return;
-              const info = result.info as TCloudinary;
+              const info = result.info as { secure_url: string };
               setVideoData(info.secure_url);
             }}
           >

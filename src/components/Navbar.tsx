@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import Logo from '../../public/logo.svg';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 function Navbar() {
   return (
-    <div>
+    <div className="md:mb-0 mb-2">
       <div className="w-1/2 flex items-end">
         <nav className="flex flex-[1.7]">
           <Image
