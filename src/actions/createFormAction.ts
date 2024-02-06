@@ -4,6 +4,7 @@ import { db } from '@/utils/db';
 import { formSchema } from '@/utils/schemas';
 import { FormState } from '@/utils/types';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 export async function createForm(
   prevState: FormState,
@@ -63,7 +64,5 @@ export async function createForm(
 
   revalidatePath('/');
   revalidatePath('/admin');
-  return {
-    errors: {},
-  };
+  redirect('/');
 }

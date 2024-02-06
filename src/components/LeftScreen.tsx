@@ -1,5 +1,6 @@
+import { LeftScreenData } from '@/utils/types';
 import Card from './Card';
-async function LeftScreen() {
+async function LeftScreen({ data }: { data: LeftScreenData }) {
   return (
     <div className="max-w-xl mx-auto space-y-3">
       <h6 className="text-slate-500 font-bold">Hello World!</h6>

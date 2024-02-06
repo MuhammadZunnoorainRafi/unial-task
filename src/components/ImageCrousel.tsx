@@ -1,25 +1,38 @@
+'use client';
+import { ImageCarouselData } from '@/utils/types';
+import { CldImage, CldVideoPlayer } from 'next-cloudinary';
 import React from 'react';
 
-function ImageCarousel() {
+function ImageCarousel({ data }: { data: ImageCarouselData }) {
   return (
     <div>
       <div className="carousel w-full h-[82vh]">
         <div id="item1" className="carousel-item w-full ">
-          <img
-            src="https://daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
-            className="w-full object-center"
+          <CldImage
+            className="object-cover"
+            sizes="100vw"
+            width="900"
+            height="600"
+            src={data.image}
+            alt="image error"
           />
         </div>
         <div id="item2" className="carousel-item w-full">
-          <img
-            src="https://daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
-            className="w-full"
+          <CldVideoPlayer
+            className="object-cover"
+            width="900"
+            height="600"
+            src={data.video}
           />
         </div>
         <div id="item3" className="carousel-item w-full">
-          <img
-            src="https://daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg"
-            className="w-full"
+          <CldImage
+            className="object-cover"
+            sizes="100vw"
+            width="900"
+            height="600"
+            src={data.gigFile}
+            alt="image error"
           />
         </div>
       </div>
