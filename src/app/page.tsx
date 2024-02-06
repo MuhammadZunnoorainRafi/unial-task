@@ -7,7 +7,7 @@ export default async function Home() {
 
   if (!data)
     return (
-      <p className="mt-32 text-center font-semibold text-xl font-mono tracking-widest">
+      <p className="absolute top-32 left-[40%] text-center font-semibold text-xl font-mono tracking-widest">
         No data yet!
       </p>
     );

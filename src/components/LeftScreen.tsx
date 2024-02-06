@@ -4,9 +4,7 @@ async function LeftScreen({ data }: { data: LeftScreenData }) {
   return (
     <div className="max-w-xl mx-auto space-y-3">
       <h6 className="text-slate-500 font-bold">Hello World!</h6>
-      <h1 className="font-bold text-4xl">
-        We are Creative agency. We build digital work that you love!
-      </h1>
+      <h1 className="font-bold text-4xl">{data.heading}</h1>
       <button className="px-6 py-3 hover:bg-orange-500 transition-colors bg-orange-400 text-white">
         Explore out Portfolio &rarr;
       </button>

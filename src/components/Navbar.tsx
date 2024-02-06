@@ -19,10 +19,10 @@ function Navbar() {
             <p>Services</p>
             <p>Portfolio</p>
 
-            <Link href="/" className="btn btn-xs btn-secondary">
+            <Link href="/" className="btn btn-xs btn-outline btn-secondary">
               Client
             </Link>
-            <Link href="/admin" className="btn btn-xs btn-primary ">
+            <Link href="/admin" className="btn btn-xs btn-outline btn-primary ">
               Admin
             </Link>
           </div>

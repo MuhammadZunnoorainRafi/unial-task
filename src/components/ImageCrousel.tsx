@@ -2,6 +2,7 @@
 import { ImageCarouselData } from '@/utils/types';
 import { CldImage, CldVideoPlayer } from 'next-cloudinary';
 import React from 'react';
+import NextVideo from 'next-video';
 
 function ImageCarousel({ data }: { data: ImageCarouselData }) {
   return (
@@ -17,13 +18,8 @@ function ImageCarousel({ data }: { data: ImageCarouselData }) {
             alt="image error"
           />
         </div>
-        <div id="item2" className="carousel-item w-full">
-          <CldVideoPlayer
-            className="object-cover"
-            width="900"
-            height="600"
-            src={data.video}
-          />
+        <div id="item2" className="carousel-item w-[690px]">
+          <NextVideo src={data.video} />
         </div>
         <div id="item3" className="carousel-item w-full">
           <CldImage

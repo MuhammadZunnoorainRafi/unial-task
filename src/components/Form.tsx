@@ -1,21 +1,23 @@
 'use client';
 import { createForm } from '@/actions/createFormAction';
-import { TCloudinary } from '@/utils/types';
+import { updateForm } from '@/actions/updateFormAction';
+import { TCloudinary, TData } from '@/utils/types';
 import { CldUploadWidget } from 'next-cloudinary';
 import { useState } from 'react';
 import { useFormState, useFormStatus } from 'react-dom';
 
-function Form({ data }: { data?: { heading?: string } }) {
+function Form({ data }: { data?: TData }) {
   const [imageData, setImageData] = useState('');
   const [videoData, setVideoData] = useState('');
   const [gigFileData, setGigFileData] = useState('');
-
-  const [state, action] = useFormState(createForm, { errors: {} });
+  const conditionalForm = data ? updateForm.bind(null, data?.id) : createForm;
+  const [state, action] = useFormState(conditionalForm, { errors: {} });
   const { pending } = useFormStatus();
   return (
     <div>
-      <form action={action} className="form-control w-full space-y-1">
+      <form action={action} className="form-control w-full space-y-2">
         <input
+          defaultValue={data?.heading}
           type="text"
           name="heading"
           placeholder="Heading"
@@ -24,6 +26,7 @@ function Form({ data }: { data?: { heading?: string } }) {
         <p className="text-red-500 text-sm">{state.errors?.heading}</p>
         <h1 className="font-semibold text-xl">Card One</h1>
         <input
+          defaultValue={data?.cardOneTitle}
           type="text"
           name="cardOneTitle"
           placeholder="Card one title"
@@ -31,6 +34,7 @@ function Form({ data }: { data?: { heading?: string } }) {
         />
         <p className="text-red-500 text-sm">{state.errors?.cardOneTitle}</p>
         <textarea
+          defaultValue={data?.cardOneDesc}
           name="cardOneDesc"
           className="textarea textarea-bordered"
           placeholder="Card one description"
@@ -38,6 +42,7 @@ function Form({ data }: { data?: { heading?: string } }) {
         <p className="text-red-500 text-sm">{state.errors?.cardOneDesc}</p>
         <h1 className="font-semibold text-xl">Card Two</h1>
         <input
+          defaultValue={data?.cardTwoTitle}
           type="text"
           name="cardTwoTitle"
           placeholder="Card two title"
@@ -45,6 +50,7 @@ function Form({ data }: { data?: { heading?: string } }) {
         />
         <p className="text-red-500 text-sm">{state.errors?.cardTwoTitle}</p>
         <textarea
+          defaultValue={data?.cardTwoDesc}
           name="cardTwoDesc"
           className="textarea textarea-bordered"
           placeholder="Card two description"
@@ -52,6 +58,7 @@ function Form({ data }: { data?: { heading?: string } }) {
         <p className="text-red-500 text-sm">{state.errors?.cardTwoDesc}</p>
         <h1 className="font-semibold text-xl">Card Three</h1>
         <input
+          defaultValue={data?.cardThreeTitle}
           type="text"
           name="cardThreeTitle"
           placeholder="Card three title"
@@ -59,6 +66,7 @@ function Form({ data }: { data?: { heading?: string } }) {
         />
         <p className="text-red-500 text-sm">{state.errors?.cardThreeTitle}</p>
         <textarea
+          defaultValue={data?.cardThreeDesc}
           name="cardThreeDesc"
           className="textarea textarea-bordered"
           placeholder="Card three description"
@@ -84,7 +92,7 @@ function Form({ data }: { data?: { heading?: string } }) {
             type="text"
             className="input input-bordered "
             name="image"
-            value={imageData}
+            value={data ? data.image : imageData}
           />
           <p className=" text-red-500 text-sm">{state.errors?.image}</p>
         </div>
@@ -95,7 +103,7 @@ function Form({ data }: { data?: { heading?: string } }) {
             onUpload={(result, _) => {
               if (result.event !== 'success') return;
               const info = result.info as TCloudinary;
-              setVideoData(info.public_id);
+              setVideoData(info.secure_url);
             }}
           >
             {({ open }) => (
@@ -108,7 +116,7 @@ function Form({ data }: { data?: { heading?: string } }) {
             type="text"
             className="input input-bordered"
             name="video"
-            value={videoData}
+            value={data ? data.video : videoData}
           />
           <p className="text-red-500 text-sm">{state.errors?.video}</p>
         </div>
@@ -132,7 +140,7 @@ function Form({ data }: { data?: { heading?: string } }) {
             type="text"
             name="gigFile"
             className="input input-bordered"
-            value={gigFileData}
+            value={data ? data.gigFile : gigFileData}
           />
           <p className="text-red-500 text-sm">{state.errors?.gigFile}</p>
         </div>
@@ -142,7 +150,13 @@ function Form({ data }: { data?: { heading?: string } }) {
           type="submit"
           className="disabled:disabled btn btn-primary text-white"
         >
-          {pending ? 'Submitting...' : 'Submit'}
+          {pending ? (
+            <span className="loading loading-spinner"></span>
+          ) : data ? (
+            'Update'
+          ) : (
+            'Submit'
+          )}
         </button>
       </form>
     </div>
